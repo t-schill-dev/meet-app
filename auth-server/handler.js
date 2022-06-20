@@ -44,31 +44,79 @@ module.exports.getAuthURL = async() => {
 /*--------Step 2: Getting Access Token---------*/
 
 module.exports.getAccessToken = async(event) => {
+        const oAuth2Client = new OAuth2(
+            client_id,
+            client_secret,
+            redirect_uris[0]
+        );
+        //Decode auth code extracted from the URL query
+        const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+        return new Promise((resolve, reject) => {
+                oAuth2Client.getToken(code, (err, token) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    return resolve(token);
+                });
+            })
+            .then((token) => {
+                //Respond with OAuth token
+                return {
+                    statusCode: 200,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    body: JSON.stringify(token),
+                };
+            })
+            .catch((err) => {
+                console.error(err);
+                return {
+                    statusCode: 500,
+                    body: JSON.stringify(err)
+                };
+            });
+    }
+    /*--------Step 3: Getting Calendar events---------*/
+module.exports.getCalendarEvents = async(event) => {
+
     const oAuth2Client = new OAuth2(
         client_id,
         client_secret,
         redirect_uris[0]
     );
-    //Decode auth code extracted from the URL query
-    const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+    const access_token = decodeURIComponent(`${event.pathParameters.code}`);
+    oAuth2Client.setCredentials({ access_token });
 
     return new Promise((resolve, reject) => {
-            oAuth2Client.getToken(code, (err, token) => {
-                if (err) {
-                    return reject(err);
+
+            calendar.events.list({
+                    calendarId: calendar_id,
+                    auth: oAuth2Client,
+                    timeMin: new Date().toISOString(),
+                    singleEvents: true,
+                    orderBy: "startTime",
+                },
+                (error, response) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(response);
+                    }
                 }
-                return resolve(token);
-            });
+            );
         })
-        .then((token) => {
-            //Respond with OAuth token
+        .then(results => {
             return {
                 statusCode: 200,
                 headers: {
                     "Access-Control-Allow-Origin": "*"
                 },
-                body: JSON.stringify(token),
-            };
+                body: JSON.stringify({ events: results.data.items }),
+
+            }
         })
         .catch((err) => {
             console.error(err);
