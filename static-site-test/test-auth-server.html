@@ -101,6 +101,7 @@
                 access_token
             } = JSON.parse(accessTokenElement.innerText);
             const eventRequest = getCalendarEvents + '/' + access_token;
+
             fetch(eventRequest)
                 .then(function(response) {
                     return response.json();
