@@ -63,17 +63,18 @@
         //---------------- END STEP 1
         //----------------- STEP 2
         const codeValue = document.getElementById("code");
-        const getAccessToken = document.getElementById('getToken');
-        const accessTokenElement = document.getElementById('accessToken')
-        const getToken = 'https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/token/{code}';
+        const getAccessToken = document.getElementById("getToken");
+        const accessTokenElement = document.getElementById("accessToken")
+        const getToken = "https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/token";
 
         getAccessToken.onclick = function() {
             let code = codeValue.value;
             //if auth code is not URL-encoded, then do so
             if (decodeURIComponent(code) === code) {
                 code = encodeURIComponent(codeValue.value);
+                console.log(code);
             }
-            const getTokenRequest = getToken + '/' + code;
+            const getTokenRequest = getToken + "/" + code;
             fetch(getTokenRequest)
                 .then(function(response) {
                     return response.json();
