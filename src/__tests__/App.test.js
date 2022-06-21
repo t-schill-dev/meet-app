@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 describe('if the app is open', () => {
-    test('shows all events', () => {
+    test('<EventList component included>', () => {
         render( < App / > );
-        const eventList = screen.getByTitle('eventList');
-        expect(eventList).toHaveLength(1);
+        const eventList = screen.getByTestId('eventList');
+        expect(eventList).toBeInTheDocument();
     });
 })
