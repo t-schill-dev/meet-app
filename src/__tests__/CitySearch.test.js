@@ -19,4 +19,12 @@ describe('<CitySearch/> Component', () => {
     const query = CitySearchWrapper.state('query');
     expect(CitySearchWrapper.find('.city').prop('value')).toBe(query)
   })
+  test('change state when input changes', () => {
+    CitySearchWrapper.setState({
+      query: 'Munich'
+    });
+    const eventObject = { target: { value: 'Berlin' } };
+    CitySearchWrapper.find('.city').simulate('change', eventObject);
+    expect(CitySearchWrapper.state('query')).toBe('Berlin');
+  })
 });
