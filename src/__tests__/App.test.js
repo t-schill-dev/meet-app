@@ -1,19 +1,21 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import App from '../Components/Main/App';
+import EventList from '../Components/EventList/EventList';
+import CitySearch from '../Components/CitySearch/CitySearch';
+
+
 
 
 describe('<App/> component', () => {
-    test('<EventList> component included', () => {
-        render(
-            <App>   </App>
-        );
-        const eventList = screen.getByRole('list');
-        expect(eventList).toBeInTheDocument();
+    let AppWrapper;
+    beforeAll(() => {
+        AppWrapper = shallow(<App />);
+    })
+    test('render list of events', () => {
+        expect(AppWrapper.find(EventList)).toHaveLength(1);
     });
     test('CitySearch component included', () => {
-        render(< App />);
-        const citySearch = screen.getByTestId('citySearch');
-        expect(citySearch).toBeInTheDocument();
+        expect(AppWrapper.find(CitySearch)).toHaveLength(1);
     });
 });
