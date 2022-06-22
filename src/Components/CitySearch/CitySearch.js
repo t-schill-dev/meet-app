@@ -8,6 +8,10 @@ class CitySearch extends Component {
     }
   }
 
+  handleInputChange = (event) => {
+    const value = event.target.value;
+    this.setState({ query: value });
+  }
 
   render() {
     return (
@@ -16,6 +20,7 @@ class CitySearch extends Component {
           type='text'
           className='city'
           value={this.state.query}
+          onChange={this.handleInputChange}
         />
         <ul className='suggestions'>
 
