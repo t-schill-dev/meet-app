@@ -8,10 +8,14 @@ class EventList extends Component {
     return (
       <ul data-testid='eventList' className='EventList' >
         {
-          events.map(event =>
-            <li key={event.id} >
-              < Event event={event} />
-            </li>
+          events.map(event => {
+            return (
+              <li key={event.id} >
+                < Event event={event} />
+              </li>
+            )
+          }
+
 
           )
         } </ul >

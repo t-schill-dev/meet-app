@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div title='main'
         className='App' >
-        < EventList />
+        < EventList events={[{}, {}]} />
       </div>
 
     );
