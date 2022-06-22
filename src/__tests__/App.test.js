@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from '../Components/App';
+import App from '../Components/Main/App';
 
 
 describe('<App/> component', () => {
@@ -8,5 +8,10 @@ describe('<App/> component', () => {
         render( < App / > );
         const eventList = screen.getByTestId('eventList');
         expect(eventList).toBeInTheDocument();
+    });
+    test('CitySearch component included', () => {
+        render( < App / > );
+        const citySearch = screen.getByTestId('citySearch');
+        expect(citySearch).toBeInTheDocument();
     });
 });

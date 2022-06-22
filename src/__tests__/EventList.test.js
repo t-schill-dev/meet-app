@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import EventList from '../Components/EventList';
-import App from '../Components/App';
+import EventList from '../Components/EventList/EventList';
 
 describe('EvenList component', () => {
   test('render correct number of events', () => {

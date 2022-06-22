@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Event from '../Components/Event';
+import Event from '../Event/Event';
 
 class EventList extends Component {
   render() {
@@ -9,13 +9,12 @@ class EventList extends Component {
       <ul data-testid='eventList' className='EventList' >
         {
           events.map(event =>
-            <li key={event.id}>
-              <Event event={event} />
+            <li key={event.id} >
+              < Event event={event} />
             </li>
 
           )
-        }
-      </ul>
+        } </ul >
     );
   }
 };
