@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import EventList from '../EventList/EventList';
-import CitySearch from '../CitySearch/CitySearch'
+import CitySearch from '../CitySearch/CitySearch';
+import { mockData } from '../../mock-data';
+import { extractLocations } from '../../api';
 import './App.css';
 
 class App extends Component {
@@ -8,7 +10,7 @@ class App extends Component {
     return (
       <div title='main'
         className='App' >
-        <CitySearch />
+        <CitySearch locations={extractLocations(mockData)} />
         < EventList events={[{}, {}]} />
       </div>
 

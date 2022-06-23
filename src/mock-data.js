@@ -79,5 +79,4 @@ let mockData = [{
     ]
     //Convert JSON to JS Object
 mockData = JSON.parse(JSON.stringify(mockData));
-
 export { mockData };
