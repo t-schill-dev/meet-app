@@ -11,7 +11,7 @@ class App extends Component {
       <div title='main'
         className='App' >
         <CitySearch locations={extractLocations(mockData)} />
-        < EventList events={[{}, {}]} />
+        < EventList events={mockData} />
       </div>
 
     );
