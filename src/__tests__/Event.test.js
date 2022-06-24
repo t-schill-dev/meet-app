@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Event from '../Components/Event/Event'
 import { mockData } from '../mock-data';
-
+//----------Feature 2----------//
 describe('<Event> component', () => {
   let EventWrapper;
   beforeAll(() => {
