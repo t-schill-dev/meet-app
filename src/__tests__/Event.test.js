@@ -43,8 +43,6 @@ describe('<Event> component', () => {
     EventWrapper.setState({ visible: false });
     const button = EventWrapper.find('.button');
     expect(button.text()).toBe('Show details');
-
-
   });
   test('Hide details button renders when expanded', () => {
     EventWrapper.setState({ visible: false });

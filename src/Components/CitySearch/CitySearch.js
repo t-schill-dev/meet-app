@@ -11,7 +11,6 @@ class CitySearch extends Component {
 
   handleInputChange = (event) => {
     const value = event.target.value;
-    console.log(this.props.locations)
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     })
@@ -29,22 +28,20 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className='CitySearch'>
-        <input
-          type='text'
+      <div className='CitySearch' >
+        <input type='text'
           className='city'
           value={this.state.query}
           onChange={this.handleInputChange}
         />
-        <ul className='suggestions'>
-          {this.state.suggestions.map((suggestion) => (
-            <li
-              key={suggestion}
-              onClick={() => this.handleItemClick(suggestion)}
-            >{suggestion}</li>
-          ))}
-          <li key='all'>
-            <b>See all cities </b>
+        <ul className='suggestions'> {
+          this.state.suggestions.map((suggestion) => (
+            <li key={suggestion}
+              onClick={() => this.handleItemClick(suggestion)} >
+              {suggestion}</li>
+          ))
+        } <li key='all' >
+            <b> See all cities </b>
           </li>
 
         </ul>
