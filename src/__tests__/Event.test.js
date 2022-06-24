@@ -33,5 +33,24 @@ describe('<Event> component', () => {
       mockData[0].description
     )
   });
+  test("hide description element", () => {
+    EventWrapper.setState({ visible: true });
+    EventWrapper.find(".button").simulate("click");
+    expect(EventWrapper.find(".eventDescription")).toHaveLength(0);
+  });
 
+  test('Show details button renders when collapsed', () => {
+    EventWrapper.setState({ visible: false });
+    const button = EventWrapper.find('.button');
+    expect(button.text()).toBe('Show details');
+
+
+  });
+  test('Hide details button renders when expanded', () => {
+    EventWrapper.setState({ visible: false });
+    const button = EventWrapper.find('.button');
+    button.simulate('click');
+    expect(EventWrapper.state('visible')).toBe(true);
+    expect(button.text()).toBe('Hide details');
+  })
 })
