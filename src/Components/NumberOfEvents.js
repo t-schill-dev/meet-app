@@ -3,9 +3,18 @@ import React, { Component } from 'react';
 export class NumberOfEvents extends Component {
   constructor() {
     super();
-    this.state = {
+    this.state = ({
+      query: '',
       numberOfEvents: ''
-    }
+    })
+  }
+  handleInputChange = (event) => {
+    const value = event.target.value;
+
+    this.setState({
+      query: value,
+      numberOfEvents: value
+    });
   }
 
   render() {
@@ -14,6 +23,8 @@ export class NumberOfEvents extends Component {
         NumberOfEvents
         <input
           className='number'
+          value={this.state.query}
+          onChange={this.handleInputChange}
         />
       </div>
     )

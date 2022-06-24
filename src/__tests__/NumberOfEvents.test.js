@@ -14,15 +14,15 @@ describe('<NumberOfEvents/> component', () => {
   test('renders text input correctly', () => {
     //test passes when user types into textbox and changing state to query
     //compare prop values of .city elements with the query
-    const query = NumberOfEventsWrapper.state('query');
+    const query = NumberOfEventsWrapper.state('numberOfEvents');
     expect(NumberOfEventsWrapper.find('.number').prop('value')).toBe(query)
   })
-  // test('change state when input changes', () => {
-  //   CitySearchWrapper.setState({
-  //     query: 'Munich'
-  //   });
-  //   const eventObject = { target: { value: 'Berlin' } };
-  //   CitySearchWrapper.find('.city').simulate('change', eventObject);
-  //   expect(CitySearchWrapper.state('query')).toBe('Berlin');
-  // })
+  test('change state when input changes', () => {
+    NumberOfEventsWrapper.setState({
+      query: '3'
+    });
+    const eventObject = { target: { value: '12' } };
+    NumberOfEventsWrapper.find('.number').simulate('change', eventObject);
+    expect(NumberOfEventsWrapper.state('query')).toBe('12');
+  })
 })
