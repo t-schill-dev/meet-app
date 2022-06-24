@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import App from '../Components/Main/App';
 import EventList from '../Components/EventList/EventList';
 import CitySearch from '../Components/CitySearch/CitySearch';
+import NumberOfEvents from '../Components/NumberOfEvents';
 
 
 
