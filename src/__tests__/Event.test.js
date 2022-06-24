@@ -9,7 +9,7 @@ describe('<Event> component', () => {
   });
 
   test('render event summary', () => {
-    expect(EventWrapper.find('.event')).toHaveLength(1);
+    expect(EventWrapper.find('.summary')).toHaveLength(1);
   })
   test('details button available', () => {
     expect(EventWrapper.find('.button')).toHaveLength(1);
