@@ -17,6 +17,8 @@ class Event extends Component {
     return (
       <div className='event'>
         <div className='summary'></div>
+        <div className='dateTime'></div>
+        <div className='location'></div>
         <button className='button'
           onClick={() => this.handleShowDetails(this.state)}>
         </button>
