@@ -46,9 +46,9 @@ describe('<Event> component', () => {
   });
   test('Hide details button renders when expanded', () => {
     EventWrapper.setState({ visible: false });
-    const button = EventWrapper.find('.button');
+    const button = EventWrapper.find('.button');//first button
     button.simulate('click');
     expect(EventWrapper.state('visible')).toBe(true);
-    expect(button.text()).toBe('Hide details');
+    expect(EventWrapper.find('.button').text()).toBe('Hide details');//changed button
   })
 })

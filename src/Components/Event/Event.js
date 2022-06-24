@@ -23,21 +23,11 @@ class Event extends Component {
           <p className='eventDescription'>{this.props.event.description}</p>
         ) : null}
         {/*Render hide details button when eventDescription is rendered*/}
-        {this.state.visible ? (
-          <button
-            className='button'
-            onClick={() => this.handleShowDetails(this.state)}>
-            Hide details
-          </button>
-        ) : (
-          <button
-            className='button'
-            onClick={() => this.handleShowDetails(this.state)}>
-            Show details
-          </button>
-        )}
-
-
+        <button
+          className='button'
+          onClick={() => this.handleShowDetails(this.state)}>
+          {this.state.visible ? 'Hide details' : 'Show details'}
+        </button>
       </div >
     )
   }
