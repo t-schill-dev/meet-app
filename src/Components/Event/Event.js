@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class Event extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       visible: false
     }
@@ -19,6 +19,13 @@ class Event extends Component {
         <div className='summary'></div>
         <div className='dateTime'></div>
         <div className='location'></div>
+        {this.state.visible ? (
+          <p className='eventDescription'>{this.props.event.description}</p>
+        ) : null}
+        {/*Render hide details button when true*/}
+        {/* {this.state.visible && (
+
+        )} */}
         <button className='button'
           onClick={() => this.handleShowDetails(this.state)}>
         </button>

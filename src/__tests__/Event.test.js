@@ -1,11 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Event from '../Components/Event/Event'
+import { mockData } from '../mock-data';
 
 describe('<Event> component', () => {
   let EventWrapper;
   beforeAll(() => {
-    EventWrapper = shallow(<Event />);
+    EventWrapper = shallow(<Event event={mockData[0]} />);
   });
 
   test('render event summary', () => {
@@ -25,5 +26,12 @@ describe('<Event> component', () => {
     EventWrapper.find('.button').simulate('click');
     expect(EventWrapper.state('visible')).toBe(true);
   })
+  test('render description element', () => {
+    EventWrapper.setState({ visible: true });
+    expect(EventWrapper.find('.eventDescription')).toBeDefined();
+    expect(EventWrapper.find('.eventDescription').text()).toBe(
+      mockData[0].description
+    )
+  });
 
 })
