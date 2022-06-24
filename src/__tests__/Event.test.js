@@ -11,6 +11,12 @@ describe('<Event> component', () => {
   test('render event summary', () => {
     expect(EventWrapper.find('.summary')).toHaveLength(1);
   })
+  test("render event dateTime", () => {
+    expect(EventWrapper.find(".dateTime")).toHaveLength(1);
+  });
+  test("render event location", () => {
+    expect(EventWrapper.find(".location")).toHaveLength(1);
+  });
   test('details button available', () => {
     expect(EventWrapper.find('.button')).toHaveLength(1);
   })
