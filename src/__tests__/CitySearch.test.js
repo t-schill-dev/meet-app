@@ -8,7 +8,7 @@ describe('<CitySearch/> Component', () => {
   let locations, CitySearchWrapper;
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(< CitySearch />);
+    CitySearchWrapper = shallow(< CitySearch locations={locations} />);
   })
   test('render text input with class city', () => {
     expect(CitySearchWrapper.find('.city')).toHaveLength(1);
