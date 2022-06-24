@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 
 export class NumberOfEvents extends Component {
+  constructor() {
+    super();
+    this.state = {
+      numberOfEvents: ''
+    }
+  }
+
   render() {
     return (
-      <div className='number'> NumberOfEvents </div>
+      <div className='NumberOfEvents'>
+        NumberOfEvents
+        <input
+          className='number'
+        />
+      </div>
     )
   }
 }
