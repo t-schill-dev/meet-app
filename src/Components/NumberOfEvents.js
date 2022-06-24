@@ -5,7 +5,7 @@ export class NumberOfEvents extends Component {
     super();
     this.state = ({
       query: '',
-      numberOfEvents: ''
+      numberOfEvents: '32'
     })
   }
   handleInputChange = (event) => {
