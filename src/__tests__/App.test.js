@@ -25,21 +25,22 @@ describe('<App/> component', () => {
 //Integration testing
 describe('<App/> integration', () => {
     let AppWrapper;
-    beforeAll(() => {
+    beforeEach(() => {
         AppWrapper = mount(<App />)
     })
-    afterAll(() => {
-        AppWrapper.unmount();
+    afterEach(() => {
+        AppWrapper = AppWrapper.unmount()
     })
-
     test('App passes "evets" state as prop to Eventlist', () => {
         const AppEventsState = AppWrapper.state('events');
         expect(AppEventsState).not.toEqual(undefined);
         expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
+
     });
     test('App passes "locations" state as prop to CitySearch', () => {
         const AppLocationsState = AppWrapper.state('locations');
         expect(AppLocationsState).not.toEqual(undefined);
         expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
+
     })
 })
