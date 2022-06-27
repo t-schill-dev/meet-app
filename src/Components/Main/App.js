@@ -8,12 +8,18 @@ import './App.css';
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      events: []
+    }
+  }
   render() {
     return (
       <div title='main'
         className='App' >
         <CitySearch locations={extractLocations(mockData)} />
-        < EventList events={mockData} />
+        < EventList events={this.state.events} />
         <NumberOfEvents />
       </div>
 
