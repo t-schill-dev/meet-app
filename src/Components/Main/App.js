@@ -11,14 +11,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      events: []
+      events: [],
+      locations: []
     }
   }
   render() {
     return (
       <div title='main'
         className='App' >
-        <CitySearch locations={extractLocations(mockData)} />
+        <CitySearch locations={this.state.locations} />
         < EventList events={this.state.events} />
         <NumberOfEvents />
       </div>
