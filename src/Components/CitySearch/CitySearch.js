@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+/*Component where User can select a city from the list of suggestions*/
 class CitySearch extends Component {
   constructor(props) {
     super(props);
