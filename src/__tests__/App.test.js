@@ -56,5 +56,12 @@ describe('<App/> integration', () => {
         const allEvents = await getEvents();
         const eventsToShow = allEvents.filter(event => event.location === selectedCity);
         expect(AppWrapper.state('events')).toEqual(eventsToShow);
-    })
+    });
+    test('get list of all events when user selects "See all cities"', async () => {
+        const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
+        //Simlulate click of last list item "See all cities"
+        await suggestionItems.at(suggestionItems.length - 1).simulate('click');
+        const allEvents = await getEvents();
+        expect(AppWrapper.state('events')).toEqual(allEvents);
+    });
 })
