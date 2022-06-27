@@ -5,8 +5,8 @@ import EventList from '../Components/EventList/EventList';
 import CitySearch from '../Components/CitySearch/CitySearch';
 import NumberOfEvents from '../Components/NumberOfEvents';
 import { mockData } from '../../src/mock-data';
-import { extractLocations } from '../../src/api';
-import { getMouseEventOptions } from '@testing-library/user-event/dist/utils';
+import { extractLocations, getEvents } from '../../src/api';
+
 
 
 describe('<App/> component', () => {

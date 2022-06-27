@@ -9,8 +9,8 @@ describe('<CitySearch/> Component', () => {
   beforeAll(() => {
     locations = extractLocations(mockData);
     CitySearchWrapper = shallow(< CitySearch locations={locations}
-    />);
-  })
+      updateEvents={() => { }} />);
+  });
   test('render text input with class city', () => {
     expect(CitySearchWrapper.find('.city')).toHaveLength(1);
   });
@@ -22,7 +22,7 @@ describe('<CitySearch/> Component', () => {
     //compare prop values of .city elements with the query
     const query = CitySearchWrapper.state('query');
     expect(CitySearchWrapper.find('.city').prop('value')).toBe(query)
-  })
+  });
   test('change state when input changes', () => {
     CitySearchWrapper.setState({
       query: 'Munich'
@@ -30,7 +30,7 @@ describe('<CitySearch/> Component', () => {
     const eventObject = { target: { value: 'Berlin' } };
     CitySearchWrapper.find('.city').simulate('change', eventObject);
     expect(CitySearchWrapper.state('query')).toBe('Berlin');
-  })
+  });
   test('render list of suggestions correctly', () => {
 
     CitySearchWrapper.setState({ suggestions: locations });
@@ -40,7 +40,7 @@ describe('<CitySearch/> Component', () => {
     for (let i = 0; i < suggestions.length; i += 1) {
       expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i])
     }
-  })
+  });
   test('suggestion list match the query when changed', () => {
     CitySearchWrapper.setState({ query: '', suggestions: [] });
     CitySearchWrapper.find('.city').simulate('change', {
@@ -51,7 +51,7 @@ describe('<CitySearch/> Component', () => {
       return location.toUpperCase().indexOf(query.toUpperCase()) > -1
     });
     expect(CitySearchWrapper.state('suggestions')).toEqual(filteredLocations);
-  })
+  });
   // ------------Feature 1 Scenario 3 ----------------------
   test('selecting a suggestion should change state', () => {
     CitySearchWrapper.setState({
@@ -60,5 +60,5 @@ describe('<CitySearch/> Component', () => {
     const suggestions = CitySearchWrapper.state('suggestions');
     CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
     expect(CitySearchWrapper.state('query')).toBe(suggestions[0])
-  })
+  });
 });
