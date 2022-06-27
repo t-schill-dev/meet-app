@@ -25,6 +25,7 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion
     })
+    //triggers function of parent component <App/>
     this.props.updateEvents(suggestion)
   }
 
@@ -42,7 +43,7 @@ class CitySearch extends Component {
               onClick={() => this.handleItemClick(suggestion)} >
               {suggestion}</li>
           ))
-        } <li key='all' >
+        } <li onClick={() => this.handleItemClick('all')} >
             <b> See all cities </b>
           </li>
 
