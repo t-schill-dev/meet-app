@@ -29,12 +29,12 @@ class Event extends Component {
       </div>
       <div className='location'>{this.props.event.location}</div>
       {this.state.visible ? (
-        <p className='eventDescription' > {this.props.event.description} </p>
+        <p className='eventDescription' >{this.props.event.description}</p>
       ) : null
       } { /*Render hide details button when eventDescription is rendered*/}
       <button className='button'
         onClick={
-          () => this.handleShowDetails(this.state)} > {this.state.visible ? 'Hide details' : 'Show details'} </button>
+          () => this.handleShowDetails(this.state)} >{this.state.visible ? 'Hide details' : 'Show details'}</button>
     </div >
     )
   }

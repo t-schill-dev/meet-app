@@ -6,7 +6,8 @@ import { mockData } from '../mock-data';
 describe('<Event> component', () => {
   let EventWrapper;
   beforeAll(() => {
-    EventWrapper = shallow(<Event event={mockData[0]} />);
+    EventWrapper = shallow(< Event event={mockData[0]}
+    />);
   });
 
   test('render event summary', () => {
@@ -43,12 +44,12 @@ describe('<Event> component', () => {
     EventWrapper.setState({ visible: false });
     const button = EventWrapper.find('.button');
     expect(button.text()).toBe('Show details');
-  });
-  test('Hide details button renders when expanded', () => {
+  }); test('Hide details button renders when expanded', () => {
     EventWrapper.setState({ visible: false });
-    const button = EventWrapper.find('.button');//first button
+    const button = EventWrapper.find('.button'); //first button
     button.simulate('click');
     expect(EventWrapper.state('visible')).toBe(true);
-    expect(EventWrapper.find('.button').text()).toBe('Hide details');//changed button
-  })
+    expect(EventWrapper.find('.button').text()).toBe('Hide details'); //changed button
+  });
+
 })
