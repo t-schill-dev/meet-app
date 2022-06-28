@@ -44,10 +44,10 @@ describe('<App/> integration', () => {
         expect(AppLocationsState).not.toEqual(undefined);
         expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
     });
-    test('App passes "numberOfEvents" state as a prop to CitySearch comp', () => {
+    test('App passes "numberOfEvents" state as a prop to numberOfEvents comp', () => {
         const AppNumberState = AppWrapper.state('numberOfEvents');
         expect(AppNumberState).not.toEqual(undefined);
-        expect(AppWrapper.find(CitySearch).props().numberOfEvents).toEqual(AppNumberState);
+        expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberState);
     });
     test('get list of events matching the city selected', async () => {
         const CitySearchWrapper = AppWrapper.find(CitySearch);
@@ -69,4 +69,5 @@ describe('<App/> integration', () => {
         const allEvents = await getEvents();
         expect(AppWrapper.state('events')).toEqual(allEvents);
     });
+
 })
