@@ -19,10 +19,9 @@ export class NumberOfEvents extends Component {
 
   render() {
     return (
-      <div className='NumberOfEvents'>
+      <div className='numberOfEvents' >
         NumberOfEvents
-        <input
-          className='number'
+        <input className='number'
           value={this.state.query}
           onChange={this.handleInputChange}
         />

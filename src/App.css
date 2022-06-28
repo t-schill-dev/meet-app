@@ -96,7 +96,7 @@ input[type="number"] {
     cursor: pointer;
 }
 
-.name {
+.summary {
     font-size: 18px;
     font-weight: 600;
 }
