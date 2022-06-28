@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { SiGooglemaps } from 'react-icons/si'
+import { BsCalendar2Event } from 'react-icons/bs'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
+import { BiTime } from 'react-icons/bi';
 
 class Event extends Component {
   constructor(props) {
@@ -11,7 +16,7 @@ class Event extends Component {
     return new Date(date).toLocaleDateString()
   }
   convertTimeEvent = (date) => {
-    return new Date(date).toLocaleTimeString()
+    return new Date(date).toLocaleTimeString().slice(0, -3)
   }
   handleShowDetails = (prevState) => {
     this.setState({
@@ -20,24 +25,39 @@ class Event extends Component {
   }
 
   render() {
-    return (<div className='event' >
-      <div className='summary'>{this.props.event.summary}</div>
-      <div className='dateTime'>
-        {this.convertDateEvent(this.props.event.start.dateTime)}
-        <p>{this.convertTimeEvent(this.props.event.start.dateTime)}</p>
-        <p>- {this.convertTimeEvent(this.props.event.end.dateTime)}</p>
+    const { event } = this.props;
+
+    return (
+      <div className='event' >
+        <Card>
+          <Card.Header className='summary'>
+            {event.summary}
+
+            <Button className='details-button'
+              onClick={() => this.handleShowDetails(this.state)}>
+              {this.state.visible ? 'Hide details' : 'Show details'}
+            </Button>
+
+          </Card.Header>
+          <Card.Body>
+            <Card.Title className='dateTime'>
+              <BsCalendar2Event fill='rgb(124, 175, 196)' />
+              &nbsp; {this.convertDateEvent(event.start.dateTime)}<br />
+              <BiTime />&nbsp; {this.convertTimeEvent(event.start.dateTime)}
+            </Card.Title>
+            <Card.Text className='location d-flex flex-column align-items-center'>
+              <h6><AiOutlineInfoCircle fill='rgb(124, 175, 196)' />&nbsp; {event.status}</h6>
+              <h6><SiGooglemaps fill='rgb(124, 175, 196)' />&nbsp; {event.location}</h6>
+            </Card.Text>
+            {this.state.visible ? (
+              <Card.Text className='eventDescription'>{event.description}</Card.Text>
+            ) : null}
+          </Card.Body>
+        </Card>
       </div>
-      <div className='location'>{this.props.event.location}</div>
-      {this.state.visible ? (
-        <p className='eventDescription' >{this.props.event.description}</p>
-      ) : null
-      } { /*Render hide details button when eventDescription is rendered*/}
-      <button className='button'
-        onClick={
-          () => this.handleShowDetails(this.state)} >{this.state.visible ? 'Hide details' : 'Show details'}</button>
-    </div >
     )
+
+
   }
 }
-
 export default Event;

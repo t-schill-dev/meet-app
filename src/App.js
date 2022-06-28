@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import Header from './Components/Header'
 import EventList from './Components/EventList/EventList';
 import CitySearch from './Components/CitySearch/CitySearch';
 import NumberOfEvents from './Components/NumberOfEvents';
+import { Container, Row, Col } from 'react-bootstrap';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import './nprogress.css';
@@ -44,13 +46,19 @@ class App extends Component {
   }
   render() {
     return (
-      <div title='main'
-        className='App' >
-        <CitySearch locations={this.state.locations}
-          updateEvents={this.updateEvents} />
-        <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
-        <EventList events={this.state.events} />
+      <div title='main' className='App' >
+        <Header />
+        <Container>
+          <Row className="d-flex justify-content-center align-item-center p-3 m-3">
+            <Col md={6} className="d-flex flex-column align-items-center justify-content-center p-5">
+              <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
+              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+            </Col>
+          </Row>
 
+          <EventList events={this.state.events} />
+
+        </Container>
       </div>
 
     );
