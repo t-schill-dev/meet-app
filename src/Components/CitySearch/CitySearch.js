@@ -6,7 +6,8 @@ class CitySearch extends Component {
     super(props);
     this.state = {
       query: '',
-      suggestions: []
+      suggestions: [],
+      showSuggestions: undefined
     }
   }
 
@@ -36,6 +37,7 @@ class CitySearch extends Component {
           className='city'
           value={this.state.query}
           onChange={this.handleInputChange}
+          onFocus={this.setState({ showSuggestions: true })}
         />
         <ul className='suggestions'> {
           this.state.suggestions.map((suggestion) => (
