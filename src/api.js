@@ -1,7 +1,6 @@
 import { mockData } from './mock-data';
 import axios from 'axios';
 import NProgress from 'nprogress'
-import { responsesAreSame } from 'workbox-broadcast-update';
 
 export const extractLocations = (events) => {
     let extractLocations = events.map((event) => event.location);
@@ -31,7 +30,7 @@ export const getEvents = async() => {
 
     if (token) {
         removeQuery();
-        const url = 'https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
+        const url = 'https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/' + token;
         const result = await axios.get(url);
         if (result.data) {
             let locations = extractLocations(result.data.events);
@@ -63,11 +62,10 @@ const getToken = async(code) => {
 
     try {
         const encodeCode = encodeURIComponent(code);
-        const response = await fetch('https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode)
+        const response = await fetch('https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/token/' + encodeCode)
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
-
         const { access_token } = await response.json();
         access_token && localStorage.setItem('access_token', access_token);
         return access_token;
