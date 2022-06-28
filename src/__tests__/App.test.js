@@ -12,7 +12,7 @@ import { extractLocations, getEvents } from '../../src/api';
 describe('<App/> component', () => {
     let AppWrapper;
     beforeAll(() => {
-        AppWrapper = shallow(<App />);
+        AppWrapper = shallow(< App />);
     })
     test('render list of events', () => {
         expect(AppWrapper.find(EventList)).toHaveLength(1);
@@ -25,7 +25,7 @@ describe('<App/> component', () => {
     });
 });
 
-//Integration testing
+//Integration testing Eventlist, CitySearch, NumberOfEvents
 describe('<App/> integration', () => {
     let AppWrapper;
     beforeEach(() => {
@@ -34,7 +34,7 @@ describe('<App/> integration', () => {
     afterEach(() => {
         AppWrapper = AppWrapper.unmount()
     })
-    test('App passes "evets" state as prop to Eventlist', () => {
+    test('App passes "events" state as prop to Eventlist', () => {
         const AppEventsState = AppWrapper.state('events');
         expect(AppEventsState).not.toEqual(undefined);
         expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
@@ -43,7 +43,12 @@ describe('<App/> integration', () => {
         const AppLocationsState = AppWrapper.state('locations');
         expect(AppLocationsState).not.toEqual(undefined);
         expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
-    })
+    });
+    test('App passes "numberOfEvents" state as a prop to CitySearch comp', () => {
+        const AppNumberState = AppWrapper.state('numberOfEvents');
+        expect(AppNumberState).not.toEqual(undefined);
+        expect(AppWrapper.find(CitySearch).props().numberOfEvents).toEqual(AppNumberState);
+    });
     test('get list of events matching the city selected', async () => {
         const CitySearchWrapper = AppWrapper.find(CitySearch);
         const locations = extractLocations(mockData);
