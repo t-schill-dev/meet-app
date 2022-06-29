@@ -6,6 +6,8 @@ import { mockData } from "../mock-data";
 import CitySearch from "../Components/CitySearch/CitySearch";
 import { extractLocations } from "../api";
 
+let locations = extractLocations(mockData);
+
 const feature = loadFeature("./src/features/filterEventsByCity.feature");
 
 defineFeature(feature, (test) => {
@@ -22,43 +24,47 @@ defineFeature(feature, (test) => {
     then('the user should see all upcoming events as a list', () => {
       AppWrapper.update();
       expect(AppWrapper.find('.event').hostNodes()).toHaveLength(mockData.length);
-      AppWrapper.unmount();
     });
   });
 
   test('User should see a list of suggestions when they search for a city.', ({ given, when, then }) => {
+    let CitySearchWrapper;
     given('the main page was open', () => {
-
+      CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} locations={locations} />)
     });
 
     when('the user starts typing in the city textbox', () => {
-
+      CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
     });
 
     then('the user should see a list of cities that match the typed text', () => {
-
+      expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(2);
     });
   });
-
+  //Async funtion to allow App component to load before chosing an option
   test('User can select a city from the suggested list.', ({ given, and, when, then }) => {
-    given('the user typed city “Berlin”', () => {
-
+    let AppWrapper;
+    given('the user typed city “Berlin”', async () => {
+      AppWrapper = await mount(<App />);
+      AppWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } })
     });
 
     and('the list of suggested cities is showing', () => {
-
+      AppWrapper.update();
+      expect(AppWrapper.find('.suggestions li')).toHaveLength(2);
     });
 
     when('the user selects the city from the list', () => {
-
+      AppWrapper.find('.suggestions li').at(0).simulate('click');
     });
 
     then('the city should change to that city and the user should see a list of upcoming events in that city', () => {
-
+      const CitySearchWrapper = AppWrapper.find(CitySearch);
+      expect(CitySearchWrapper.state('query')).toBe('Berlin, Germany');
     });
 
     and('the user should receive a list of upcoming events in that city', () => {
-
+      expect(AppWrapper.find('.event')).toHaveLength(mockData.length)
     });
   });
 
