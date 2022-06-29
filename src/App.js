@@ -3,10 +3,8 @@ import Header from './Components/Header'
 import EventList from './Components/EventList/EventList';
 import CitySearch from './Components/CitySearch/CitySearch';
 import NumberOfEvents from './Components/NumberOfEvents';
-import { Container, Row, Col } from 'react-bootstrap';
 import { extractLocations, getEvents } from './api';
 import { Container, Row, Col } from 'react-bootstrap';
-import Header from './Components/Header';
 import './App.css';
 import './nprogress.css';
 
