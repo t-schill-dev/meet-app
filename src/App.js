@@ -5,6 +5,8 @@ import CitySearch from './Components/CitySearch/CitySearch';
 import NumberOfEvents from './Components/NumberOfEvents';
 import { Container, Row, Col } from 'react-bootstrap';
 import { extractLocations, getEvents } from './api';
+import { Container, Row, Col } from 'react-bootstrap';
+import Header from './Components/Header';
 import './App.css';
 import './nprogress.css';
 
@@ -37,6 +39,7 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
+        console.log(this.state.events)
       }
     });
   }

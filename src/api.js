@@ -3,10 +3,10 @@ import axios from 'axios';
 import NProgress from 'nprogress'
 
 export const extractLocations = (events) => {
-    let extractLocations = events.map((event) => event.location);
-    let locations = [...new Set(extractLocations)];
+    var extractLocations = events.map((event) => event.location);
+    var locations = [...new Set(extractLocations)];
     return locations;
-}
+};
 
 const checkToken = async(accessToken) => {
     const result = await fetch(

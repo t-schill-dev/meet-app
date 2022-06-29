@@ -33,7 +33,7 @@ class Event extends Component {
           <Card.Header className='summary'>
             {event.summary}
 
-            <Button className='details-button'
+            <Button className='button details-button'
               onClick={() => this.handleShowDetails(this.state)}>
               {this.state.visible ? 'Hide details' : 'Show details'}
             </Button>
