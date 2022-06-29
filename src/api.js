@@ -62,7 +62,7 @@ const getToken = async(code) => {
 
     try {
         const encodeCode = encodeURIComponent(code);
-        const response = await fetch('https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/token/' + encodeCode)
+        const response = await fetch(`https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/token/${encodeCode}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
