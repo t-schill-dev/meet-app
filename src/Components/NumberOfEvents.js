@@ -5,7 +5,7 @@ export class NumberOfEvents extends Component {
     super();
     this.state = ({
       query: '',
-      numberOfEvents: '32'
+      numberOfEvents: ''
     })
   }
   handleInputChange = (event) => {
@@ -22,6 +22,7 @@ export class NumberOfEvents extends Component {
       <div className='numberOfEvents' >
         NumberOfEvents
         <input className='number'
+          type='number'
           value={this.state.query}
           onChange={this.handleInputChange}
         />
