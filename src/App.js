@@ -10,14 +10,13 @@ import './nprogress.css';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      events: [],
-      locations: [],
-      numberOfEvents: '12'
-    }
+
+  state = {
+    events: [],
+    locations: [],
+    numberOfEvents: '12'
   }
+
 
   updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
@@ -36,8 +35,12 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
-        console.log(this.state.events)
+        // console.log('events before state: ', events)
+        this.setState({
+          events: events,
+          locations: extractLocations(events)
+        });
+
       }
     });
   }
