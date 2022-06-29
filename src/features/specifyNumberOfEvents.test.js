@@ -10,7 +10,7 @@ defineFeature(feature, test => {
 
 
 
-  test('DEAULT NUMBER IS 12 WHEN USER HASN’T SPECIFIED', ({ given, when, then }) => {
+  test('DEFAULT NUMBER IS 12 WHEN USER HASN’T SPECIFIED', ({ given, when, then }) => {
     given('the user sees a list of events', () => {
       AppWrapper = mount(< App />);
     });
