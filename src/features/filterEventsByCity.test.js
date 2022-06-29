@@ -16,12 +16,13 @@ defineFeature(feature, (test) => {
     });
 
     when('the user opens the app', () => {
-      AppWrapper = mount(<App />);
+      AppWrapper = mount(<App events={mockData} />);
     });
 
     then('the user should see all upcoming events as a list', () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.find('.event').hostNodes()).toHaveLength(mockData.length);
+      AppWrapper.unmount();
     });
   });
 
