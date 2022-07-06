@@ -1,10 +1,7 @@
 import { loadFeature, defineFeature } from 'jest-cucumber'
 import React from "react";
 import { mount } from "enzyme";
-import { render, screen, fireEvent } from '@testing-library/react';
 import App from "../App";
-import Event from '../Components/Event/Event';
-import EventList from '../Components/EventList/EventList'
 import { mockData } from '../mock-data';
 
 const feature = loadFeature('./src/features/showAndHideDetails.feature');
@@ -15,7 +12,7 @@ defineFeature(feature, test => {
 
   test('AN EVENT ELEMENT IS COLLAPSED BY DEFAULT', ({ given, when, then }) => {
     given('the city page was open', () => {
-      AppWrapper = mount(<App />);
+      AppWrapper = mount(< App />);
     });
 
     when('the user didn’t select any event', () => {
@@ -23,38 +20,37 @@ defineFeature(feature, test => {
     });
 
     then('the user should see a collapsed event', () => {
-      expect(AppWrapper.find('.extra-details')).toHaveLength(0);
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(0);
     });
   });
 
   test('USER CAN EXPAND AN EVENT TO SEE DETAILS', ({ given, when, then }) => {
     given('the user found an event', async () => {
-      AppWrapper = await mount(<App />);
+      AppWrapper = await mount(< App />);
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(0);
     });
 
     when('the user clicks on the button/link of the specific event', () => {
       AppWrapper.update();
-      AppWrapper.find('.details-button').simulate('click');
+      AppWrapper.find('.details-button').at(0).simulate('click')
+
     });
 
     then('the user should see the expanded details of the event', () => {
-      expect(AppWrapper.find('.extra-details')).toHaveLength(1);
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(1);
     });
   });
-  //Using RTL for async
+
   test('USER CAN COLLAPSE AN EVENT TO HIDE ITS DETAILS', ({ given, when, then }) => {
     given('the event details are expanded', async () => {
-      render(<App events={mockData}>
-        <EventList >
-          <Event />
-        </EventList>
-      </App >
-      );
-      screen.getByRole('button')
+      AppWrapper = await mount(<App />);
+      AppWrapper.update()
+      AppWrapper.find('.details-button').at(0).simulate('click');
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(1);
     });
 
     when('the user closes the details', () => {
-      fireEvent.click(screen.getByText('Hide details'));
+      AppWrapper.find('.details-button').at(0).simulate('click');
     });
 
     then('the user can collapse the elements details', () => {
