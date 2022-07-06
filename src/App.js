@@ -15,21 +15,29 @@ class App extends Component {
     this.state = {
       events: [],
       locations: [],
+      locationSelected: 'all',
       numberOfEvents: '12'
     }
   }
 
   updateEvents = (location, eventCount) => {
+    if (eventCount === undefined) {
+      eventCount = this.state.numberOfEvents;
+    } else (
+      this.setState({ numberOfEvents: eventCount })
+    )
+    if (location === undefined) {
+      location = this.state.locationSelected;
+    }
+    console.log(eventCount, location)
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) => event.location === location);
-      //filter events by eventcount
-      const filteredEvents = locationEvents.slice(0, eventCount);
+      let locationEvents = location === "all" ? events : events.filter((event) => event.location === location);
       this.setState({
-        events: filteredEvents
-      })
-    })
+        events: locationEvents.slice(0, eventCount),
+        numberOfEvents: eventCount,
+        locationSelected: location,
+      });
+    });
   }
   componentDidMount() {
     //make sure it is mounted before populating the state
