@@ -5,7 +5,7 @@
 import '@testing-library/jest-dom';
 
 import Enzyme from 'enzyme';
-import EnzymeAdapter from '@cfaester/enzyme-adapter-react-18';
+import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 Enzyme.configure({
     adapter: new EnzymeAdapter(),
