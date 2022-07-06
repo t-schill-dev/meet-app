@@ -10,7 +10,7 @@ class EventList extends Component {
     return (
       <Row className='EventList d-flex justify-content-center' >
         {events.map(event => (
-          <Col md={6} key={event.id}>
+          <Col md={4} lg={4} key={event.id}>
             <Event event={event} />
           </Col>
         ))
