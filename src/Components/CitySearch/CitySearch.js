@@ -48,6 +48,7 @@ class CitySearch extends Component {
         <input type='text'
           className='city'
           value={this.state.query}
+          placeholder={'Place of interest'}
           onChange={this.handleInputChange}
           onFocus={
             () => { this.setState({ showSuggestions: true }) }} />
@@ -61,8 +62,13 @@ class CitySearch extends Component {
             () => this.handleItemClick('all')} >
             <b> See all cities </b>
           </li>
+          <li id='collapse_button' onClick={
+            () => this.setState({ showSuggestions: false })}> <b >Close</b> </li>
+
+
 
         </ul>
+
       </div >
     )
   }

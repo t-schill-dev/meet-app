@@ -13,23 +13,25 @@ export class NumberOfEvents extends Component {
         infoText: 'Please choose a number between 1 and 32',
       })
     } else {
+      this.props.updateEvents(undefined, newValue);
       this.setState({
         infoText: '',
       })
     }
-    this.props.updateEvents(undefined, newValue);
+
   }
 
 
   render() {
     return (
       <div className='numberOfEvents' >
-        NumberOfEvents
+        <h4>Number of events to show</h4>
         <input
           className='number events_number__input'
           type='number'
-          placeholder='Number of events to show'
-          onChange={this.handleInputChange} />
+          value={this.props.numberOfEvents}
+          onChange={this.handleInputChange}
+        />
         <ErrorAlert id='errorAlert' text={this.state.infoText} />
       </div>
     )
