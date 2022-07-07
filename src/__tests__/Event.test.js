@@ -12,7 +12,7 @@ describe('<Event> component', () => {
 
   test('render event summary', () => {
     expect(EventWrapper.find('.summary')).toHaveLength(1);
-  })
+  });
   test("render event dateTime", () => {
     expect(EventWrapper.find(".dateTime")).toHaveLength(1);
   });
@@ -20,13 +20,13 @@ describe('<Event> component', () => {
     expect(EventWrapper.find(".location")).toHaveLength(1);
   });
   test('details button available', () => {
-    expect(EventWrapper.find('.button')).toHaveLength(1);
-  })
+    expect(EventWrapper.find('.details-button')).toHaveLength(1);
+  });
   test('change state by button click', () => {
     EventWrapper.setState({ visible: false });
     EventWrapper.find('.button').simulate('click');
     expect(EventWrapper.state('visible')).toBe(true);
-  })
+  });
   test('render description element', () => {
     EventWrapper.setState({ visible: true });
     expect(EventWrapper.find('.eventDescription')).toBeDefined();
@@ -44,7 +44,8 @@ describe('<Event> component', () => {
     EventWrapper.setState({ visible: false });
     const button = EventWrapper.find('.button');
     expect(button.text()).toBe('Show details');
-  }); test('Hide details button renders when expanded', () => {
+  });
+  test('Hide details button renders when expanded', () => {
     EventWrapper.setState({ visible: false });
     const button = EventWrapper.find('.button'); //first button
     button.simulate('click');

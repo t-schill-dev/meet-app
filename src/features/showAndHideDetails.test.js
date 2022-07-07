@@ -2,6 +2,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber'
 import React from "react";
 import { mount } from "enzyme";
 import App from "../App";
+import { mockData } from '../mock-data';
 
 const feature = loadFeature('./src/features/showAndHideDetails.feature');
 
@@ -19,34 +20,37 @@ defineFeature(feature, test => {
     });
 
     then('the user should see a collapsed event', () => {
-      expect(AppWrapper.find('.extra-details')).toHaveLength(0);
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(0);
     });
   });
 
   test('USER CAN EXPAND AN EVENT TO SEE DETAILS', ({ given, when, then }) => {
     given('the user found an event', async () => {
       AppWrapper = await mount(< App />);
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(0);
     });
 
     when('the user clicks on the button/link of the specific event', () => {
       AppWrapper.update();
-      AppWrapper.find('.details-button').simulate('click');
+      AppWrapper.find('.details-button').at(0).simulate('click')
+
     });
 
     then('the user should see the expanded details of the event', () => {
-      expect(AppWrapper.find('.extra-details')).toHaveLength(1);
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(1);
     });
   });
 
   test('USER CAN COLLAPSE AN EVENT TO HIDE ITS DETAILS', ({ given, when, then }) => {
     given('the event details are expanded', async () => {
-      AppWrapper = await mount(< App />);
-      AppWrapper.find('.details-button').simulate('click');
+      AppWrapper = await mount(<App />);
+      AppWrapper.update()
+      AppWrapper.find('.details-button').at(0).simulate('click');
+      expect(AppWrapper.find('.eventDescription')).toHaveLength(1);
     });
 
     when('the user closes the details', () => {
-      AppWrapper.update();
-      AppWrapper.find('.details-button').simulate('click');
+      AppWrapper.find('.details-button').at(0).simulate('click');
     });
 
     then('the user can collapse the elements details', () => {

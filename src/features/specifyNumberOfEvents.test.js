@@ -7,9 +7,6 @@ const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 let AppWrapper;
 
 defineFeature(feature, test => {
-
-
-
   test('DEFAULT NUMBER IS 12 WHEN USER HASN’T SPECIFIED', ({ given, when, then }) => {
     given('the user sees a list of events', () => {
       AppWrapper = mount(< App />);
@@ -19,14 +16,15 @@ defineFeature(feature, test => {
 
     });
 
-    then('12 events should be displayed (unless there are less available)', () => {
+    then('the user should see a list 12 events by default', () => {
+      AppWrapper.update();
       expect(AppWrapper.find('.event')).toHaveLength(2);
     });
   });
 
   test('USER CAN CHANGE THE NUMBER OF EVENTS TO SEE', ({ given, when, then }) => {
     given('the user sees a list of events', () => {
-      AppWrapper = mount(< App />);
+      AppWrapper = mount(<App />);
     });
 
     when('the user specified a number of events he wants to see', () => {

@@ -8,17 +8,18 @@ import { extractLocations } from "../api";
 
 let locations = extractLocations(mockData);
 
-const feature = loadFeature("./src/features/filterEventsByCity.feature");
+const feature = loadFeature("./src/features/fiterEventsByCity.feature");
 
 defineFeature(feature, (test) => {
-  test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
+  test('WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES', ({ given, when, then }) => {
     let AppWrapper;
     given('the user hasn’t searched for any city', () => {
 
     });
 
     when('the user opens the app', () => {
-      AppWrapper = mount(<App events={mockData} />);
+      AppWrapper = mount(< App events={mockData}
+      />);
     });
 
     then('the user should see all upcoming events as a list', () => {
@@ -27,10 +28,13 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('User should see a list of suggestions when they search for a city.', ({ given, when, then }) => {
+  test('USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY', ({ given, when, then }) => {
     let CitySearchWrapper;
     given('the main page was open', () => {
-      CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} locations={locations} />)
+      CitySearchWrapper = shallow(< CitySearch updateEvents={
+        () => { }}
+        locations={locations}
+      />)
     });
 
     when('the user starts typing in the city textbox', () => {
@@ -42,10 +46,10 @@ defineFeature(feature, (test) => {
     });
   });
   //Async funtion to allow App component to load before chosing an option
-  test('User can select a city from the suggested list.', ({ given, and, when, then }) => {
+  test('USER CAN SELECT A CITY FROM THE SUGGESTED LIST', ({ given, and, when, then }) => {
     let AppWrapper;
     given('the user typed city “Berlin”', async () => {
-      AppWrapper = await mount(<App />);
+      AppWrapper = await mount(< App />);
       AppWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } })
     });
 

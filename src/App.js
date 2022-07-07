@@ -7,40 +7,55 @@ import { extractLocations, getEvents } from './api';
 import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import './nprogress.css';
+import { WarningAlert } from './Components/Alert';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: [],
+      locations: [],
+      locationSelected: 'all',
+      numberOfEvents: '12', //default value
+      warningText: ''
 
-  state = {
-    events: [],
-    locations: [],
-    numberOfEvents: '12'
+    }
   }
 
 
   updateEvents = (location, eventCount) => {
+    if (eventCount === undefined) {
+      eventCount = this.state.numberOfEvents;
+    } else (
+      this.setState({ numberOfEvents: eventCount })
+    )
+    if (location === undefined) {
+      location = this.state.locationSelected;
+    }
+    console.log(eventCount, location)
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) => event.location === location);
-      //filter events by eventcount
-      const filteredEvents = locationEvents.slice(0, eventCount);
+      let locationEvents = location === "all" ? events : events.filter((event) => event.location === location);
       this.setState({
-        events: filteredEvents
-      })
-    })
+        events: locationEvents.slice(0, eventCount),
+        numberOfEvents: eventCount,
+        locationSelected: location,
+      });
+    });
   }
   componentDidMount() {
     //make sure it is mounted before populating the state
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        // console.log('events before state: ', events)
         this.setState({
           events: events,
           locations: extractLocations(events)
         });
-
+      } else {
+        this.setState({
+          warningText: 'Could not get any events'
+        })
       }
     });
   }
@@ -59,7 +74,7 @@ class App extends Component {
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
             </Col>
           </Row>
-
+          <WarningAlert text={this.state.warningText} />
           <EventList events={this.state.events} />
 
         </Container>
