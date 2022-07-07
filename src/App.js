@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import './nprogress.css';
+import { WarningAlert } from './Components/Alert';
 
 
 class App extends Component {
@@ -16,7 +17,9 @@ class App extends Component {
       events: [],
       locations: [],
       locationSelected: 'all',
-      numberOfEvents: '12'
+      numberOfEvents: '12', //default value
+      warningText: ''
+
     }
   }
 
@@ -48,6 +51,10 @@ class App extends Component {
           events: events,
           locations: extractLocations(events)
         });
+      } else {
+        this.setState({
+          warningText: 'Could not get any events'
+        })
       }
     });
   }
@@ -66,7 +73,7 @@ class App extends Component {
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
             </Col>
           </Row>
-
+          <WarningAlert text={this.state.warningText} />
           <EventList events={this.state.events} />
 
         </Container>
