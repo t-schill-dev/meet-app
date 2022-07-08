@@ -46,7 +46,7 @@ class App extends Component {
   componentDidMount() {
     //make sure it is mounted before populating the state
     this.mounted = true;
-    this.promptOfflineWarning();
+    //this.promptOfflineWarning();
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
@@ -61,14 +61,14 @@ class App extends Component {
     this.mounted = false;
   }
 
-  promptOfflineWarning = () => {
-    if (!navigator.onLine) {
-      console.log('you are offline')
-      this.setState({
-        warningText: 'You are offline, so events may not be up to date'
-      })
-    }
-  }
+  // promptOfflineWarning = () => {
+  //   if (!navigator.onLine) {
+  //     console.log('you are offline')
+  //     this.setState({
+  //       warningText: 'You are offline, so events may not be up to date'
+  //     })
+  //   }
+  // }
 
   render() {
     return (
@@ -81,7 +81,7 @@ class App extends Component {
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
             </Col>
           </Row>
-          <WarningAlert text={this.state.warningText} />
+          {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
           <EventList events={this.state.events} />
 
         </Container>
