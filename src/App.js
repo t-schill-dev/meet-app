@@ -63,6 +63,7 @@ class App extends Component {
 
   promptOfflineWarning = () => {
     if (!navigator.onLine) {
+      console.log('you are offline')
       this.setState({
         warningText: 'You are offline, so events may not be up to date'
       })
