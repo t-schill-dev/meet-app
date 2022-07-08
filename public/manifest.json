@@ -1,0 +1,25 @@
+{
+    "short_name": "Meet App",
+    "name": "Meet and Learn",
+    "icons": [{
+            "src": "favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "48x48"
+        },
+        {
+            "src": "meet-app-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "meet-app-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6"
+}
