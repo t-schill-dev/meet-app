@@ -28,7 +28,7 @@ function WelcomeScreen(props) {
               </div>
             </div>
             <a
-              href="../../public/privacy.html"
+              href="https://t-schill-dev.github.io/meet-app/privacy.html"
               rel="nofollow noopener"
             >
               Privacy policy
