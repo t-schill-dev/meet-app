@@ -5,19 +5,19 @@
             "src": "favicon.ico",
             "type": "image/x-icon",
             "sizes": "48x48",
-            "purpose": "maskable"
+            "purpose": "any"
         },
         {
             "src": "meet-app-192.png",
             "type": "image/png",
             "sizes": "192x192",
-            "purpose": "maskable"
+            "purpose": "any"
         },
         {
             "src": "meet-app-512.png",
             "type": "image/png",
             "sizes": "512x512",
-            "purpose": "maskable"
+            "purpose": "any"
         }
     ],
     "start_url": ".",
