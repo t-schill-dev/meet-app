@@ -18,37 +18,6 @@ const checkToken = async(accessToken) => {
     return result;
 }
 
-export const getEvents = async() => {
-    NProgress.start();
-
-    if (window.location.href.startsWith('http://localhost')) {
-        NProgress.done();
-        return mockData;
-    }
-    //Access local storage when user offline 
-    if (!navigator.onLine) {
-        const data = localStorage.getItem("lastEvents");
-        NProgress.done();
-        return data ? JSON.parse(data).events : [];
-    }
-
-    const token = await getAccessToken();
-
-    if (token) {
-        removeQuery();
-        const url = `https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
-        const result = await axios.get(url);
-        if (result.data) {
-            //store events as stings in cache to access it offline
-            let locations = extractLocations(result.data.events);
-            localStorage.setItem('lastEvents', JSON.stringify(result.data));
-            localStorage.setItem('locations', JSON.stringify(locations))
-        }
-        NProgress.done();
-        return result.data.events;
-    }
-}
-
 //Check if there is a path and build URL with current path or pushState
 const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
@@ -102,4 +71,37 @@ export const getAccessToken = async() => {
         return code && getToken(code);
     }
     return accessToken;
+}
+
+export const getEvents = async() => {
+    NProgress.start();
+
+    if (window.location.href.startsWith('http://localhost')) {
+        NProgress.done();
+        return mockData;
+    }
+    //Access local storage when user offline 
+    if (!navigator.onLine) {
+        const data = localStorage.getItem("lastEvents");
+        NProgress.done();
+        console.log('offline data: ', data)
+        return data ? JSON.parse(data).events : [];
+
+    }
+
+    const token = await getAccessToken();
+
+    if (token) {
+        removeQuery();
+        const url = `https://d256su3iob.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
+        const result = await axios.get(url);
+        if (result.data) {
+            //store events as stings in cache to access it offline
+            let locations = extractLocations(result.data.events);
+            localStorage.setItem('lastEvents', JSON.stringify(result.data));
+            localStorage.setItem('locations', JSON.stringify(locations))
+        }
+        NProgress.done();
+        return result.data.events;
+    }
 }

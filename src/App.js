@@ -46,23 +46,29 @@ class App extends Component {
   componentDidMount() {
     //make sure it is mounted before populating the state
     this.mounted = true;
+    this.promptOfflineWarning();
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
           events: events,
           locations: extractLocations(events)
         });
-      } else {
-        this.setState({
-          warningText: 'Could not get any events'
-        })
       }
-    });
+    })
   }
 
   componentWillUnmount() {
     this.mounted = false;
   }
+
+  promptOfflineWarning = () => {
+    if (!navigator.onLine) {
+      this.setState({
+        warningText: 'You are offline, so events may not be up to date'
+      })
+    }
+  }
+
   render() {
     return (
       <div title='main' className='App' >
