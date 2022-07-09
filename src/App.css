@@ -16,11 +16,16 @@
 
 .App {
     text-align: center;
+    background-color: var(--secondary-color);
     /* padding: 2% 5%; */
 }
 
 .App * {
     box-sizing: border-box;
+}
+
+.main-app {
+    background-color: var(--secondary-color);
 }
 
 ul {
@@ -36,8 +41,21 @@ p {
     display: none;
 }
 
-.showSuggestions {
-    display: block;
+.header {
+    background-color: black;
+    font-family: 'arthead';
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: var(--title-size);
+}
+
+.top-box {}
+
+.number-label,
+.city-label {
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: var(--primary-color);
 }
 
 input[type="text"],
@@ -60,13 +78,20 @@ input[type="number"] {
     width: 250px;
 }
 
+.numberOfEvents {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 300px;
+    max-width: 300px;
+    margin: 20px;
+}
+
 .CitySearch {
     display: flex;
     flex-direction: column;
     flex-basis: 300px;
     max-width: 300px;
-    margin: auto;
-    position: relative;
+    margin: 20px;
 }
 
 .suggestions {
@@ -84,6 +109,10 @@ input[type="number"] {
     padding: 8px 6px 8px 10px;
     background-color: #eee;
     cursor: default;
+}
+
+.showSuggestions {
+    display: block;
 }
 
 
@@ -161,12 +190,6 @@ input[type="number"] {
 
 .description {
     overflow-x: hidden;
-}
-
-.numberOfEvents {
-    width: 200px;
-    margin: 20px auto;
-    text-align: center;
 }
 
 

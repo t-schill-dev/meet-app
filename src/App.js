@@ -76,20 +76,23 @@ class App extends Component {
   // }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    //if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div title='main' className='App' >
         <Header />
-        <Container fluid>
-          <Row className="d-flex justify-content-center align-item-center p-3 m-3">
-            <Col md={6} className="d-flex flex-column align-items-center justify-content-center p-5">
-              <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
+        <Container fluid className='main-app'>
+          <Row className='top-box'>
+            <Col>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+
+            </Col>
+            <Col>
+              <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
             </Col>
           </Row>
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
           <EventList events={this.state.events} />
-          <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+          {/*  <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />*/}
         </Container>
       </div>
 
