@@ -80,7 +80,7 @@ class App extends Component {
     return (
       <div title='main' className='App' >
         <Header />
-        <Container>
+        <Container fluid>
           <Row className="d-flex justify-content-center align-item-center p-3 m-3">
             <Col md={6} className="d-flex flex-column align-items-center justify-content-center p-5">
               <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
