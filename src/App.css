@@ -18,9 +18,12 @@
     font-style: normal;
 }
 
+html {
+    background-color: var(--secondary-color);
+}
+
 .App {
     text-align: center;
-    background-color: var(--secondary-color);
     /* padding: 2% 5%; */
 }
 
@@ -342,8 +345,7 @@ input[type="number"] {
     overflow: visible;
 }
 
-
-/* @media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {
     .data-vis-wrapper {
         flex-direction: row;
     }
@@ -353,4 +355,4 @@ input[type="number"] {
         min-width: auto;
         margin: 0 auto;
     }
-} */
+}
