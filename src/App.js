@@ -101,20 +101,15 @@ class App extends Component {
             </Col>
           </Row>
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart
-              width={400}
-              height={400}
-              margin={{
-                top: 20,
-                right: 20,
-                bottom: 20,
-                left: 20,
-              }}
-            >
+          <ResponsiveContainer height={400}>
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
               <CartesianGrid />
               <XAxis type="category" dataKey="city" name="city" />
-              <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+              <YAxis
+                type="number"
+                dataKey="number"
+                name="number of events"
+                allowDecimals={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               <Legend verticalAlign="top" height={36} />
               <Scatter data={this.getData()} fill="#8884d8" />
