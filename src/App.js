@@ -92,7 +92,7 @@ class App extends Component {
           </Row>
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
           <EventList events={this.state.events} />
-          {/*  <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />*/}
+          <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         </Container>
       </div>
 
