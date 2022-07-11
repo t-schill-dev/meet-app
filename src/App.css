@@ -28,8 +28,6 @@
     box-sizing: border-box;
 }
 
-.main-app {}
-
 ul {
     padding: 0;
     list-style: none;
@@ -49,13 +47,13 @@ p {
     font-weight: 600;
     color: var(--secondary-color);
     font-size: var(--title-size);
+    padding: 20px;
 }
 
 .top-box {
     display: flex;
     justify-content: space-around;
     background-color: var(--secondary-color);
-    font-family: var(--general-font)
 }
 
 .number-label,
@@ -92,6 +90,7 @@ input[type="number"] {
     flex-basis: 250px;
     max-width: 250px;
     margin: 30px 0 20px 0;
+    font-family: var(--general-font);
 }
 
 .suggestions {

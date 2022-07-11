@@ -82,11 +82,10 @@ class App extends Component {
         <Header />
         <Container fluid className='main-app'>
           <Row className='top-box'>
-            <Col>
+            <Col sm={12}>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-
             </Col>
-            <Col>
+            <Col sm={12}>
               <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
             </Col>
           </Row>
