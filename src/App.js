@@ -9,6 +9,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import './nprogress.css';
 import { WarningAlert } from './Components/Alert';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 
 class App extends Component {
@@ -66,6 +67,16 @@ class App extends Component {
     this.mounted = false;
   }
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length;
+      const city = location.split(', ').shift();
+      return { city, number };
+    })
+    return data;
+  }
+
   // promptOfflineWarning = () => {
   //   if (!navigator.onLine) {
   //     console.log('you are offline')
@@ -76,7 +87,7 @@ class App extends Component {
   // }
 
   render() {
-    //if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div title='main' className='App' >
         <Header />
@@ -90,6 +101,25 @@ class App extends Component {
             </Col>
           </Row>
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
+          <ResponsiveContainer width="100%" height="100%">
+            <ScatterChart
+              width={400}
+              height={400}
+              margin={{
+                top: 20,
+                right: 20,
+                bottom: 20,
+                left: 20,
+              }}
+            >
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Legend verticalAlign="top" height={36} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
           <EventList events={this.state.events} />
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         </Container>
