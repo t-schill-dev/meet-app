@@ -40,14 +40,14 @@ class Event extends Component {
 
           </Card.Header>
           <Card.Body>
-            <Card.Title className='dateTime'>
-              <BsCalendar2Event fill='rgb(124, 175, 196)' />
+            <Card.Title className='dateTime d-flex flex-column align-items-center'>
+              <BsCalendar2Event fill='#1c1c1c' />
               &nbsp; {this.convertDateEvent(event.start.dateTime)}<br />
-              <BiTime />&nbsp; {this.convertTimeEvent(event.start.dateTime)}
+              <BiTime fill='#1c1c1c' />&nbsp; {this.convertTimeEvent(event.start.dateTime)}
             </Card.Title>
             <Card.Text className='location d-flex flex-column align-items-center'>
-              <h6><AiOutlineInfoCircle fill='rgb(124, 175, 196)' />&nbsp; {event.status}</h6>
-              <h6><SiGooglemaps fill='rgb(124, 175, 196)' />&nbsp; {event.location}</h6>
+              <AiOutlineInfoCircle fill='#1c1c1c' />&nbsp; {event.status} <br />
+              <SiGooglemaps fill='#1c1c1c' />&nbsp; {event.location}
             </Card.Text>
             {this.state.visible ? (
               <Card.Text className='eventDescription'>{event.description}</Card.Text>

@@ -25,7 +25,7 @@ export class NumberOfEvents extends Component {
   render() {
     return (
       <div className='numberOfEvents' >
-        <h4>Number of events to show</h4>
+        <label className='number-label' htmlFor='citysearch'>Number of events to see</label>
         <input
           className='number events_number__input'
           type='number'
