@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-const EventGenre = ({ locations, events }) => {
+export default function EventGenre({ locations, events }) {
   const [data, setData] = useState([]);
   const colors = ['#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57'];
   // eslint-disable-next-line
@@ -45,4 +45,4 @@ const EventGenre = ({ locations, events }) => {
   );
 }
 
-export default EventGenre;
+

@@ -102,12 +102,12 @@ class App extends Component {
             </Col>
           </Row>
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
-          <div className='data-vis-wrapper'>
+          <Row className='data-vis-wrapper'>
             <EventGenre events={this.state.events} locations={this.state.locations} />
 
             <ScatterChartComp data={this.getData()} />
 
-          </div>
+          </Row>
           <EventList events={this.state.events} />
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         </Container>
