@@ -9,8 +9,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import './nprogress.css';
 import { WarningAlert } from './Components/Alert';
-
-import ScatterChartComp from './Components/Charts/scatterchart';
+import { Legend, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+//import ScatterChartComp from './Components/Charts/scatterchart';
 import EventGenre from './Components/Charts/EventGenre';
 
 
@@ -37,7 +37,6 @@ class App extends Component {
     if (location === undefined) {
       location = this.state.locationSelected;
     }
-    console.log(eventCount, location)
     getEvents().then((events) => {
       let locationEvents = location === "all" ? events : events.filter((event) => event.location === location);
       this.setState({
@@ -75,6 +74,7 @@ class App extends Component {
       const city = location.split(', ').shift();
       return { city, number };
     })
+    console.log('cities: ', data)
     return data;
   }
 
@@ -105,7 +105,20 @@ class App extends Component {
           <Row className='data-vis-wrapper'>
             <EventGenre events={this.state.events} locations={this.state.locations} />
 
-            <ScatterChartComp data={this.getData()} />
+            <ResponsiveContainer height={400}>
+              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
+                <CartesianGrid fill='#000000' />
+                <XAxis type="category" dataKey="city" name="city" />
+                <YAxis
+                  type="number"
+                  dataKey="number"
+                  name="number of events"
+                  allowDecimals={false} />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+
+                <Scatter data={this.getData()} fill="#8884d8" />
+              </ScatterChart>
+            </ResponsiveContainer >
 
           </Row>
           <EventList events={this.state.events} />
