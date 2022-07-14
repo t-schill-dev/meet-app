@@ -103,7 +103,7 @@ class App extends Component {
           </Row>
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
           <Row className='data-vis-wrapper'>
-            <EventGenre events={this.state.events} locations={this.state.locations} />
+            <EventGenre events={this.state.events} />
 
             <ResponsiveContainer height={400}>
               <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
