@@ -107,8 +107,8 @@ class App extends Component {
             <ResponsiveContainer height={400}>
               <ScatterChartComp data={this.getData()} />
             </ResponsiveContainer>
-            <EventList events={this.state.events} />
           </div>
+          <EventList events={this.state.events} />
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         </Container>
       </div>
