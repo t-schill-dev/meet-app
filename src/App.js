@@ -22,7 +22,6 @@ class App extends Component {
       locations: [],
       locationSelected: 'all',
       numberOfEvents: '12', //default value
-      warningText: '',
       showWelcomeScreen: undefined
 
     }
