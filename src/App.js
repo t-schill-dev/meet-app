@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import './nprogress.css';
 import { WarningAlert } from './Components/Alert';
-import { ResponsiveContainer } from 'recharts';
+
 import ScatterChartComp from './Components/Charts/scatterchart';
 import EventGenre from './Components/Charts/EventGenre';
 
@@ -104,9 +104,9 @@ class App extends Component {
           {!navigator.onLine && <WarningAlert text={'You are offline, so events may not be up to date'} />}
           <div className='data-vis-wrapper'>
             <EventGenre events={this.state.events} locations={this.state.locations} />
-            <ResponsiveContainer height={400}>
-              <ScatterChartComp data={this.getData()} />
-            </ResponsiveContainer>
+
+            <ScatterChartComp data={this.getData()} />
+
           </div>
           <EventList events={this.state.events} />
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
