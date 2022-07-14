@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-export default function EventGenre(events) {
+const EventGenre = ({ events }) => {
 
   const [data, setData] = useState([]);
   const COLORS = ['#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57'];
@@ -11,7 +11,7 @@ export default function EventGenre(events) {
   const getData = () => {
     const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
     const data = genres.map((genre) => {
-      const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
+      const value = events.filter(({ summary }) => summary.includes(genre)).length;
       return { name: genre, value: value };
     });
     console.log('data for pie chart: ', data)
@@ -40,3 +40,4 @@ export default function EventGenre(events) {
   );
 }
 
+export default EventGenre;
