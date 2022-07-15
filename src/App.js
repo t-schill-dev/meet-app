@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import './nprogress.css';
 import { WarningAlert } from './Components/Alert';
-import { Legend, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 //import ScatterChartComp from './Components/Charts/scatterchart';
 import EventGenre from './Components/Charts/EventGenre';
 
@@ -78,15 +78,6 @@ class App extends Component {
     return data;
   }
 
-  // promptOfflineWarning = () => {
-  //   if (!navigator.onLine) {
-  //     console.log('you are offline')
-  //     this.setState({
-  //       warningText: 'You are offline, so events may not be up to date'
-  //     })
-  //   }
-  // }
-
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
@@ -94,10 +85,10 @@ class App extends Component {
         <Header />
         <Container fluid className='main-app'>
           <Row className='top-box'>
-            <Col sm={12}>
+            <Col>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
             </Col>
-            <Col sm={12}>
+            <Col>
               <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
             </Col>
           </Row>
