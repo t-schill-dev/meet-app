@@ -1,6 +1,63 @@
+
 # Meet App
 
+This is a serverless, progressive web application (PWA) built with React using a
+test-driven development (TDD) technique. The application uses the Google
+Calendar API to fetch upcoming events.
+
+
+## Installation
+
+Install dependencies for meet-app with npm
+
+```bash
+  git clone [repository]
+  cd meet-app
+  npm install
+  
+```
+    
+## Documentation
+
+### Dependencies
+**For Development**
+- React
+- React Bootstrap
+- Recharts (for Data Visualization)
+
+**For Testing**
+- Jest
+- Jest cucumber (ntegration Testing)
+- Puppeteer (End-To-End-Testing)
+- Enzyme
+- Enzyme Adapter React 17
+- Atatus browser testing
+
+**Serverless**
+
+AWS Lambda was utilized to 
+- generate a token.
+- pass it to the application after request
+
+
+
+## Deployment
+
+The app is deployed to github pages.
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+
+
 ## Features
+
+Scenarios are written for **Unit and Integration Testing**.
+For **Behavioral Driven Development** ('BDD' in the features folder) the chosen syntax is *Gherkin* (given, when, then)
+
 ### Feature 1: Filter events by city
 _As a user, I would like to be able to filter events by city so that I can see the list of events that take place in that city._
 
@@ -43,11 +100,11 @@ _As a user, I would like to be able to show/hide event details so that I can see
 ### Feature 3: Specify number of events
 _As a user, I would like to be able to specify the number of events I want to view in the app so that I can see more or fewer events in the events list at once._
 
-**Scenario 1: Default number is 32 when user hasn’t specified**
+**Scenario 1: Default number is 12 when user hasn’t specified**
 
 -   **Given** the user sees a list of events
 -   **When** the user hasn’t specified a number of events
--   **Then** the user should see a list 32 events by default
+-   **Then** the user should see a list 12 events by default
 
 **Scenario 2: User can change the number of events to see**
 
@@ -78,4 +135,20 @@ _As a user, I would like to be able to see a chart showing the upcoming events i
 -   **Given** the main page is open
 -   **When** the user hasn’t specified a city
 -   **Then** the user should see the number of events in each city displayed
+
+
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+
+## Demo
+
+
+Access it using [this]( https://t-schill-dev.github.io/meet-app/) project link
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherinempeterson.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+
 
