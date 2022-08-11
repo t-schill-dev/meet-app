@@ -11,7 +11,7 @@ Calendar API to fetch upcoming events.
 Install dependencies for meet-app with npm
 
 ```bash
-  git clone [repository]
+  git clone https://github.com/t-schill-dev/meet-app.git
   cd meet-app
   npm install
   
@@ -149,6 +149,6 @@ _As a user, I would like to be able to see a chart showing the upcoming events i
 Access it using [this]( https://t-schill-dev.github.io/meet-app/) project link
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherinempeterson.com/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/timon-schill/)
 
 
